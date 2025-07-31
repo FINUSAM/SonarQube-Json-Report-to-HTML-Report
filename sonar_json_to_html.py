@@ -575,7 +575,7 @@ def issues_table(issues, status_label, severity_label, show_closed_column=True):
         row += f'<td>{html_escape(issue.get("debt", "-"))}</td>'
         row += '</tr>'
         rows.append(row)
-    return f'<div class="issues-card"><table class="issues-table">{header}{"".join(rows)}</table></div>' if issues else f'<p>No {status_label} {severity_label} issues.</p>'
+    return f'<div class="issues-card"><table border="1" class="issues-table">{header}{"".join(rows)}</table></div>' if issues else f'<p>No {status_label} {severity_label} issues.</p>'
 
 # HTML for severity toggles inside a status section
 def severity_details(issues_by_sev, status_label):
