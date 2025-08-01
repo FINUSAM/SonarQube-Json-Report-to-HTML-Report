@@ -583,7 +583,10 @@ def severity_details(issues_by_sev, status_label):
     show_closed = status_label.lower() == "closed"
     for sev in all_severities:
         sev_issues = issues_by_sev.get(sev, [])
-        html += f'<details class="details-modern">\n  <summary>{sev.title()} ({len(sev_issues)})</summary>\n  {issues_table(sev_issues, status_label, sev.title(), show_closed_column=show_closed)}\n</details>\n'
+        if sev.title() == "Critical":
+          html += f'<details class="details-modern" open>\n  <summary>{sev.title()} ({len(sev_issues)})</summary>\n  {issues_table(sev_issues, status_label, sev.title(), show_closed_column=show_closed)}\n</details>\n'
+        else:
+          html += f'<details class="details-modern">\n  <summary>{sev.title()} ({len(sev_issues)})</summary>\n  {issues_table(sev_issues, status_label, sev.title(), show_closed_column=show_closed)}\n</details>\n'
     return html
 
 html = f'''<!DOCTYPE html>
